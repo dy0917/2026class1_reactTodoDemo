@@ -1,14 +1,20 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Card, Button } from "react-bootstrap";
 import TodoForm from "./Components/TodoForm";
-import TodoCard from "./Components/TodoCard";
+import TodoList from "./Components/TodoList";
+
+// fetch("http://jsonplaceholder.typicode.com")
+//   .then((response) => response.json())
+//   .then((data) => {
+//     // find max id, if list is empty return 0
+//     console.log(data);
+//   });
 
 function App() {
   const [todoList, setTodoList] = useState([]);
 
-  const addToClick = (todo) => {
+  const addTodoClick = (todo) => {
     const cloneTodoList = [...todoList];
-    // find max id, if list is empty return 0
     const currentMaxId =
       todoList.length === 0
         ? 0
@@ -17,19 +23,22 @@ function App() {
     setTodoList(cloneTodoList);
   };
 
+  const removeTodoClick = (id) => {
+    const cloneTodoList = [...todoList];
+    const todoIndex = cloneTodoList.findIndex((todo) => todo.id === id);
+    cloneTodoList.splice(todoIndex, 1);
+    setTodoList(cloneTodoList);
+  };
+
   return (
     <>
       <Container>
         <Row className="">
           <Col>
-            <TodoForm addTodo={addToClick}></TodoForm>
+            <TodoForm addTodo={addTodoClick}></TodoForm>
           </Col>
         </Row>
-        <Row>
-          {todoList.map((todo) => (
-            <TodoCard {...todo} key={todo.id} />
-          ))}
-        </Row>
+        <TodoList todoList={todoList} removeTodo={removeTodoClick} />
       </Container>
     </>
   );
