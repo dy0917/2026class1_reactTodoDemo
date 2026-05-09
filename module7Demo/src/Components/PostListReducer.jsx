@@ -6,7 +6,7 @@ function reducer(postsResult, action) {
     case "FETCH_SUCCESS":
       return { loading: false, posts: action.payload, error: "" };
     case "FETCH_ERROR":
-      return { loading: false, posts: [], error: action.payload };
+      return { loading: false, posts: [], error: action.error };
     default:
       return { ...postsResult, loading: false };
   }
@@ -27,7 +27,7 @@ export default function PostListReducer() {
         dispatch({ type: "FETCH_SUCCESS", payload: response.data }); // dispatch calls reducer function and triggers re-render
       })
       .catch((error) => {
-        dispatch({ type: "FETCH_ERROR", payload: error.message }); // lets us handle different types of state changes differently
+        dispatch({ type: "FETCH_ERROR", error: error.message }); // lets us handle different types of state changes differently
       });
   }, []);
 

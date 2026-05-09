@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 // Renders a digital time that updates every second
 export default function Clock() {
   const [date, setDate] = useState(new Date());
-  
 
   useEffect(() => {
     // first arg is usually an arrow function
@@ -16,17 +15,15 @@ export default function Clock() {
     };
   }, []);
 
-
-
-  useEffect(() => {
-    return () => {
-      console.log("another effect cleanup");
-    };
-  }, []);
+  useEffect(() => {});
 
   const tick = () => {
     setDate(new Date());
     console.log("tick"); // track the effect frequency
+  };
+
+  const changeToObj = () => {
+    setDate({});
   };
 
   return (

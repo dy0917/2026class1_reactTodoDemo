@@ -1,21 +1,14 @@
 import { useState, useEffect } from "react";
+import { useData } from "../Hooks/useData";
 function ActivityFinder() {
   // Fetches a random activity
   const [participants, setParticipants] = useState(1);
-  const [activity, setActivity] = useState("");
-  useEffect(() => {
-    const loadData = async () => {
-      const response = await fetch(
-        "https://bored.api.lewagon.com/api/activity?" +
-          "participants=" +
-          participants,
-      );
-      const json = await response.json();
-      setActivity(json.activity);
-    };
-    loadData();
-  }, [participants]);
-
+  const [data] = useData(
+    "https://bored.api.lewagon.com/api/activity?" +
+      "participants=" +
+      participants,
+  );
+  const activity = data ? data.activity : "not found";
   return (
     <div className="ActivityFinder componentBox">
       <h3>Activity Finder</h3>
