@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { MyThemeContext } from "../Contexts/MyThemeContext";
-import './NavBar.css'
+import "./NavBar.css";
 export default function NavBar() {
   const { theme } = useContext(MyThemeContext);
   return (
@@ -19,7 +19,7 @@ export default function NavBar() {
         <li>
           <NavLink to="/about">About</NavLink>
         </li>
-              <li>
+        <li>
           <NavLink to="/posts">Posts</NavLink>
         </li>
       </ul>{" "}
