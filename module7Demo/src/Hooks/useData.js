@@ -4,6 +4,7 @@ export function useData(url) {
   // state variable for holding fetched json data
   const [data, setData] = useState(null);
   useEffect(() => {
+    console.log('url', url)
     if (url) {
       let ignore = false;
       fetch(url)
@@ -20,5 +21,5 @@ export function useData(url) {
     }
   }, [url]); // re-run effect if url changes
   // return the data fetched from the given url
-  return [data];
+  return data;
 }

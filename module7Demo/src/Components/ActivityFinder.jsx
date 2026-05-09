@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useData } from "../Hooks/useData";
+import { UserContext } from "../Contexts/UserContext";
 function ActivityFinder() {
   // Fetches a random activity
   const [participants, setParticipants] = useState(1);
-  const [data] = useData(
+  const { currentUser } = useContext(UserContext);
+  const data = useData(
     "https://bored.api.lewagon.com/api/activity?" +
       "participants=" +
       participants,
@@ -11,7 +13,7 @@ function ActivityFinder() {
   const activity = data ? data.activity : "not found";
   return (
     <div className="ActivityFinder componentBox">
-      <h3>Activity Finder</h3>
+      <h3> {currentUser.name} Activity Finder</h3>
       <label>
         Choose number of participants:
         <select

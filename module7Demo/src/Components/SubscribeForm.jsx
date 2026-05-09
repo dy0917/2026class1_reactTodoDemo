@@ -1,27 +1,35 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useFormInput } from "../Hooks/useFormInput";
-
+import { UserContext } from "../Contexts/UserContext";
 export default function SubscribeForm() {
   const [status, setStatus] = useState("");
+
   // similar state variables mapped to form inputs
-  const [firstInputProps, firstInputReset, firstResetDefault] =
+  const [firstNameInputProps, firstNameReset, firstNameResetDefault] =
     useFormInput("Mary");
   const [emailInputProps, emailReset, emailResetDefault] =
     useFormInput("mary@poppins.com");
+  const { currentUser, handleUpdateUser, function1 } = useContext(UserContext);
   // similar handler functions
+
   function handleSubscribe() {
-    firstResetDefault();
+    firstNameResetDefault();
     emailResetDefault();
-    console.log(firstInputProps.value, emailInputProps.value);
+    console.log(firstNameInputProps.value, emailInputProps.value);
+    function1();
+    handleUpdateUser({
+      name: firstNameInputProps.value,
+      email: emailInputProps.value,
+    });
     setStatus("Thanks for subscribing!");
   }
   return (
     <div className="SubscribeForm componentBox">
       <label>
-        First name:{" "}
+        First name:{currentUser.name}
         {/* form inputs with similar props
          */}
-        <input {...firstInputProps} />
+        <input {...firstNameInputProps} />
       </label>
       <label>
         Email: {/* form inputs with similar props */}
