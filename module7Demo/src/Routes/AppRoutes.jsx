@@ -9,6 +9,7 @@ import PostsPage from "./Pages/PostsPage";
 import PostList from "./Pages/PostList";
 import PostDetailPage from "./Pages/PostDetailPage";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import DashRoutes from "./dashRoutes";
 
 function AppRoutes(props) {
   return (
@@ -16,17 +17,7 @@ function AppRoutes(props) {
       {/* index matches on default/home URL: / */}
       <Route index element={<Homepage {...props} />} />
       {/* nested routes, matches on /dash/messages etc */}
-      <Route
-        path="dash"
-        element={
-          <ProtectedRoute>
-            <DashboardPage {...props} />
-          </ProtectedRoute>
-        }
-      >
-        <Route path="messages" element={<DashboardMessages />} />
-        <Route path="tasks" element={<DashboardTasks />} />
-      </Route>
+      <DashRoutes></DashRoutes>
       <Route path="/about" element={<AboutPage {...props} />} />
       <Route path="/posts" element={<PostsPage {...props} />}>
         <Route index element={<PostList {...props} />} />

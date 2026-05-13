@@ -3,19 +3,8 @@ import { Container, Row, Col, Form, Card, Button } from "react-bootstrap";
 import TodoForm from "./Components/TodoForm";
 import TodoList from "./Components/TodoList";
 
-// fetch("http://jsonplaceholder.typicode.com")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     // find max id, if list is empty return 0
-//     console.log(data);
-//   });
-
 function App() {
   const [todoList, setTodoList] = useState([]);
-
-
-
-
 
   const addTodoClick = (todo) => {
     const cloneTodoList = [...todoList];

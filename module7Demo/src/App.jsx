@@ -4,7 +4,7 @@ import ActivityFinder from "./Components/ActivityFinder";
 import SubscribeForm from "./Components/SubscribeForm";
 import MyThemeProvider from "./Contexts/MyThemeContext";
 import { BrowserRouter } from "react-router-dom";
-import AppRoutes from "./AppRouter";
+import AppRoutes from "./Routes/AppRoutes";
 import NavBar from "./Components/NavBar";
 
 function App() {
